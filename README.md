@@ -21,7 +21,7 @@ Operation (on Windows) :
 C:>npm install cvss3
 cvss3@0.0.1 node_modules\cvss3
 
-C:\home\project\cvss-demo>node app.js
+C:>node app.js
 CVE-2013-1937 : Vector : AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
                 Score  : 6.1
 ```
