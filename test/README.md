@@ -23,7 +23,7 @@ should@7.0.2 node_modules\should
 ├── should-equal@0.5.0
 └── should-format@0.3.0
 
-C:>mocha index.js
+C:>mocha --reporter list
 ```
 
 [mocha]: http://mochajs.org/ "Mocha - the fun, simple, flexible JavaScript test framework"

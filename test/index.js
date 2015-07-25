@@ -1,6 +1,6 @@
 var should = require('should');
 
-var CVSS3 = require('../index');
+var CVSS3 = require('../');
 
 describe('cvss3', function () {
 

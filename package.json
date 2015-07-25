@@ -6,8 +6,15 @@
   "directories": {
     "test": "test"
   },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha --reporter list"
+  },
+  "engines": {
+    "node": "0.12.x"
   },
   "repository": {
     "type": "git",
