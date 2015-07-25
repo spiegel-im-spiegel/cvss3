@@ -1,5 +1,7 @@
 # Common Vulnerability Scoring System Version 3
 
+[![Build Status](https://travis-ci.org/spiegel-im-spiegel/cvss3.svg)](https://travis-ci.org/spiegel-im-spiegel/cvss3)
+
 ## Usage
 
 Demo code (app.js) :
