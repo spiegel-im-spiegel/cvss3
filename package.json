@@ -1,0 +1,26 @@
+{
+  "name": "cvss3",
+  "version": "0.0.1",
+  "description": "CVSS (Common Vulnerability Scoring System) Version 3",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiegel-im-spiegel/cvss3.git"
+  },
+  "keywords": [
+    "cvss",
+    "cvss3"
+  ],
+  "author": "spiegel",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/spiegel-im-spiegel/cvss3/issues"
+  },
+  "homepage": "https://github.com/spiegel-im-spiegel/cvss3#readme"
+}
