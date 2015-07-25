@@ -43,3 +43,4 @@ These codes are licensed under CC0.
 - [CVSS に関するメモ — Baldanders.info](http://www.baldanders.info/spiegel/log2/000290.shtml)
 - [CVSS に関するメモ 2 — Baldanders.info](http://www.baldanders.info/spiegel/log2/000334.shtml)
 - [Demo for CVSS](http://www.baldanders.info/spiegel/archive/cvss/cvss2.html)
+- [CVSSv3 用の node.js モジュールを作ってみた - Qiita](http://qiita.com/spiegel-im-spiegel/items/d6fe10d3df92b9d8556b)
