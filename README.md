@@ -24,6 +24,12 @@ CVE-2013-1937 : Vector : AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
                 Score  : 6.1
 ```
 
+## License
+
+These codes are licensed under CC0.
+
+[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png "CC0")](http://creativecommons.org/publicdomain/zero/1.0/deed.ja)
+
 ## Reference
 
 - [Common Vulnerability Scoring System (CVSS-SIG)](http://www.first.org/cvss)
