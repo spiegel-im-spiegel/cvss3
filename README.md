@@ -2,6 +2,8 @@
 
 ## Usage
 
+Demo code (app.js) :
+
 ```javascript:app.js
 var cvss3 = require('cvss3');
 
@@ -10,6 +12,8 @@ var base = (new cvss3.BaseMetrics()).importVector(vector_cve_2013_1937);
 console.log('CVE-2013-1937 : Vector : '+base.getVector());
 console.log('                Score  : '+base.getScore());
 ```
+
+Operation (on Windows) :
 
 ```shell
 C:>npm install cvss3
