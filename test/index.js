@@ -552,147 +552,153 @@ describe('cvss3', function () {
 		});
 
 		it('Test Base Metrics : CVE-2013-1937', function () {
-			var vector_cve_2013_1937 = "AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937);
 			base.getVector().should.equal(vector_cve_2013_1937);
 			base.getScore().should.equal(6.1);
 		});
+		it('Test Base Metrics : CVE-2013-1937 not CVSSv3', function () {
+			var vector_cve_2013_1937e = "AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937e);
+			base.getScore().should.equal(0);
+		});
+
 
 		it('Test Base Metrics : CVE-2013-0375', function () {
-			var vector_cve_2013_0375 = "AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N";
+			var vector_cve_2013_0375 = "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_0375);
 			base.getVector().should.equal(vector_cve_2013_0375);
 			base.getScore().should.equal(6.4);
 		});
 
 		it('Test Base Metrics : CVE-2014-3566', function () {
-			var vector_cve_2014_3566 = "AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N";
+			var vector_cve_2014_3566 = "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2014_3566);
 			base.getVector().should.equal(vector_cve_2014_3566);
 			base.getScore().should.equal(3.1);
 		});
 
 		it('Test Base Metrics : CVE-2012-1516', function () {
-			var vector_cve_2012_1516 = "AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H";
+			var vector_cve_2012_1516 = "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2012_1516);
 			base.getVector().should.equal(vector_cve_2012_1516);
 			base.getScore().should.equal(9.9);
 		});
 
 		it('Test Base Metrics : CVE-2009-0783', function () {
-			var vector_cve_2009_0783 = "AV:L/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L";
+			var vector_cve_2009_0783 = "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2009_0783);
 			base.getVector().should.equal(vector_cve_2009_0783);
 			base.getScore().should.equal(4.2);
 		});
 
 		it('Test Base Metrics : CVE-2012-0384', function () {
-			var vector_cve_2012_0384 = "AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H";
+			var vector_cve_2012_0384 = "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2012_0384);
 			base.getVector().should.equal(vector_cve_2012_0384);
 			base.getScore().should.equal(8.8);
 		});
 
 		it('Test Base Metrics : CVE-2015-1098', function () {
-			var vector_cve_2015_1098 = "AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H";
+			var vector_cve_2015_1098 = "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2015_1098);
 			base.getVector().should.equal(vector_cve_2015_1098);
 			base.getScore().should.equal(7.8);
 		});
 
 		it('Test Base Metrics : CVE-2014-0160', function () {
-			var vector_cve_2014_0160 = "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N";
+			var vector_cve_2014_0160 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2014_0160);
 			base.getVector().should.equal(vector_cve_2014_0160);
 			base.getScore().should.equal(7.5);
 		});
 
 		it('Test Base Metrics : CVE-2014-6271', function () {
-			var vector_cve_2014_6271 = "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
+			var vector_cve_2014_6271 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2014_6271);
 			base.getVector().should.equal(vector_cve_2014_6271);
 			base.getScore().should.equal(9.8);
 		});
 
 		it('Test Base Metrics : CVE-2008-1447', function () {
-			var vector_cve_2008_1447 = "AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N";
+			var vector_cve_2008_1447 = "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2008_1447);
 			base.getVector().should.equal(vector_cve_2008_1447);
 			base.getScore().should.equal(6.8);
 		});
 
 		it('Test Base Metrics : CVE-2014-2005', function () {
-			var vector_cve_2014_2005 = "AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
+			var vector_cve_2014_2005 = "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2014_2005);
 			base.getVector().should.equal(vector_cve_2014_2005);
 			base.getScore().should.equal(6.8);
 		});
 
 		it('Test Base Metrics : CVE-2010-0467', function () {
-			var vector_cve_2010_0467 = "AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N";
+			var vector_cve_2010_0467 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2010_0467);
 			base.getVector().should.equal(vector_cve_2010_0467);
 			base.getScore().should.equal(5.8);
 		});
 
 		it('Test Base Metrics : CVE-2012-1342', function () {
-			var vector_cve_2012_1342 = "AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N";
+			var vector_cve_2012_1342 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2012_1342);
 			base.getVector().should.equal(vector_cve_2012_1342);
 			base.getScore().should.equal(5.8);
 		});
 
 		it('Test Base Metrics : CVE-2013-6014', function () {
-			var vector_cve_2013_6014 = "AV:A/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:H";
+			var vector_cve_2013_6014 = "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_6014);
 			base.getVector().should.equal(vector_cve_2013_6014);
 			base.getScore().should.equal(9.3);
 		});
 
 		it('Test Base Metrics : CVE-2014-9253', function () {
-			var vector_cve_2014_9253 = "AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N";
+			var vector_cve_2014_9253 = "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2014_9253);
 			base.getVector().should.equal(vector_cve_2014_9253);
 			base.getScore().should.equal(5.4);
 		});
 
 		it('Test Base Metrics : CVE-2009-0658', function () {
-			var vector_cve_2009_0658 = "AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H";
+			var vector_cve_2009_0658 = "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2009_0658);
 			base.getVector().should.equal(vector_cve_2009_0658);
 			base.getScore().should.equal(7.8);
 		});
 
 		it('Test Base Metrics : CVE-2011-1265', function () {
-			var vector_cve_2011_1265 = "AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
+			var vector_cve_2011_1265 = "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2011_1265);
 			base.getVector().should.equal(vector_cve_2011_1265);
 			base.getScore().should.equal(8.8);
 		});
 
 		it('Test Base Metrics : CVE-2014-2019', function () {
-			var vector_cve_2014_2019 = "AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N";
+			var vector_cve_2014_2019 = "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2014_2019);
 			base.getVector().should.equal(vector_cve_2014_2019);
 			base.getScore().should.equal(4.6);
 		});
 
 		it('Test Base Metrics : CVE-2015-0970', function () {
-			var vector_cve_2015_0970 = "AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H";
+			var vector_cve_2015_0970 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2015_0970);
 			base.getVector().should.equal(vector_cve_2015_0970);
 			base.getScore().should.equal(8.8);
 		});
 
 		it('Test Base Metrics : CVE-2014-0224', function () {
-			var vector_cve_2014_0224 = "AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N";
+			var vector_cve_2014_0224 = "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2014_0224);
 			base.getVector().should.equal(vector_cve_2014_0224);
 			base.getScore().should.equal(7.4);
 		});
 
 		it('Test Base Metrics : CVE-2012-5376', function () {
-			var vector_cve_2012_5376 = "AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H";
+			var vector_cve_2012_5376 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2012_5376);
 			base.getVector().should.equal(vector_cve_2012_5376);
 			base.getScore().should.equal(9.6);
