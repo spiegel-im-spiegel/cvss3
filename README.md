@@ -42,6 +42,7 @@ These codes are licensed under CC0.
 - [共通脆弱性評価システムCVSS v3概説：IPA 独立行政法人 情報処理推進機構](http://www.ipa.go.jp/security/vuln/CVSSv3.html)
 - [CVSS に関するメモ — Baldanders.info](http://www.baldanders.info/spiegel/log2/000290.shtml)
 - [CVSS に関するメモ 2 — Baldanders.info](http://www.baldanders.info/spiegel/log2/000334.shtml)
+- [CVSS に関するメモ 3 — Baldanders.info](http://www.baldanders.info/spiegel/log2/000864.shtml)
 - [Demo for CVSS v3](http://www.baldanders.info/spiegel/archive/cvss/cvss3.html)
 - [CVSSv3 用の node.js モジュールを作ってみた - Qiita](http://qiita.com/spiegel-im-spiegel/items/d6fe10d3df92b9d8556b)
 - [node.js の CVSS v3 モジュールを使ってデモページを作ってみた - Qiita](http://qiita.com/spiegel-im-spiegel/items/f2db3759b957206d4521)
