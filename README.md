@@ -10,7 +10,7 @@ Demo code (app.js) :
 ```javascript:app.js
 var cvss3 = require('cvss3');
 
-var vector_cve_2013_1937 = "AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
 var base = (new cvss3.BaseMetrics()).importVector(vector_cve_2013_1937);
 console.log('CVE-2013-1937 : Vector : '+base.getVector());
 console.log('                Score  : '+base.getScore());
@@ -23,7 +23,7 @@ C:>npm install cvss3
 cvss3@0.0.1 node_modules\cvss3
 
 C:>node app.js
-CVE-2013-1937 : Vector : AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
+CVE-2013-1937 : Vector : CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
                 Score  : 6.1
 ```
 
