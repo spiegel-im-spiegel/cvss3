@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "should": "*"
+    "should": "^7.0.4"
   },
   "scripts": {
     "test": "mocha --reporter list"

@@ -441,7 +441,7 @@ describe('cvss3', function () {
 
 		});
 
-		describe('base-i', function () {
+		describe('base-a', function () {
 
 			var testSetA = [
 				{"value": 'H', "score": 0.56},
@@ -551,6 +551,28 @@ describe('cvss3', function () {
 			base.a.getScore().should.equal(0.56);
 		});
 
+		it('Test Base Metrics : Input all metric', function () {
+			var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var base = new CVSS3.BaseMetrics(new CVSS3.BaseMetrics.AV('N')
+												,new CVSS3.BaseMetrics.AC('L')
+												,new CVSS3.BaseMetrics.PR('N')
+												,new CVSS3.BaseMetrics.UI('R')
+												,new CVSS3.BaseMetrics.S('C')
+												,new CVSS3.BaseMetrics.C('L')
+												,new CVSS3.BaseMetrics.I('L')
+												,new CVSS3.BaseMetrics.A('N'));
+			base.getName().should.equal("BaseMetrics");
+			base.getVector().should.equal(vector_cve_2013_1937);
+			base.getScore().should.equal(6.1);
+		});
+
+		it('Test Base Metrics : Undefined', function () {
+			var base = new CVSS3.BaseMetrics();
+			var vector_zero = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			base.getVector().should.equal(vector_zero);
+			base.getScore().should.equal(0.0);
+		});
+
 		it('Test Base Metrics : CVE-2013-1937', function () {
 			var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937);
@@ -560,7 +582,7 @@ describe('cvss3', function () {
 		it('Test Base Metrics : CVE-2013-1937 not CVSSv3', function () {
 			var vector_cve_2013_1937e = "AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
 			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937e);
-			base.getScore().should.equal(0);
+			base.getScore().should.equal(0.0);
 		});
 
 
@@ -704,6 +726,325 @@ describe('cvss3', function () {
 			base.getScore().should.equal(9.6);
 		});
 
+	});
+
+	describe('temporal', function () {
+
+		describe('tempo-e', function () {
+
+			var testSetE = [
+				{"value": 'X', "score": 1.00},
+				{"value": 'H', "score": 1.00},
+				{"value": 'F', "score": 0.97},
+				{"value": 'P', "score": 0.94},
+				{"value": 'U', "score": 0.91}
+			];
+			var nameE = 'E';
+
+			it('Test Exploit Code Maturity : '+testSetE[0].value, function () {
+				var value = testSetE[0].value;
+				var score = testSetE[0].score;
+				var tempoE = new CVSS3.TemporalMetrics.E(value);
+				tempoE.getName().should.equal(nameE);
+				tempoE.getVector().should.equal(nameE+':'+value);
+				tempoE.getScore().should.equal(score);
+			});
+
+			it('Test Exploit Code Maturity : null', function () {
+				var value = testSetE[0].value;
+				var score = testSetE[0].score;
+				var tempoE = new CVSS3.TemporalMetrics.E(null);
+				tempoE.getName().should.equal(nameE);
+				tempoE.getVector().should.equal(nameE+':'+value);
+				tempoE.getScore().should.equal(score);
+			});
+
+			it('Test Exploit Code Maturity : undefined', function () {
+				var value = testSetE[0].value;
+				var score = testSetE[0].score;
+				var tempoE = new CVSS3.TemporalMetrics.E();
+				tempoE.getName().should.equal(nameE);
+				tempoE.getVector().should.equal(nameE+':'+value);
+				tempoE.getScore().should.equal(score);
+			});
+
+			it('Test Exploit Code Maturity : '+testSetE[1].value, function () {
+				var value = testSetE[1].value;
+				var score = testSetE[1].score;
+				var tempoE = new CVSS3.TemporalMetrics.E(value);
+				tempoE.getName().should.equal(nameE);
+				tempoE.getVector().should.equal(nameE+':'+value);
+				tempoE.getScore().should.equal(score);
+			});
+
+			it('Test Exploit Code Maturity : '+testSetE[2].value, function () {
+				var value = testSetE[2].value;
+				var score = testSetE[2].score;
+				var tempoE = new CVSS3.TemporalMetrics.E(value);
+				tempoE.getName().should.equal(nameE);
+				tempoE.getVector().should.equal(nameE+':'+value);
+				tempoE.getScore().should.equal(score);
+			});
+
+			it('Test Exploit Code Maturity : '+testSetE[3].value, function () {
+				var value = testSetE[3].value;
+				var score = testSetE[3].score;
+				var tempoE = new CVSS3.TemporalMetrics.E(value);
+				tempoE.getName().should.equal(nameE);
+				tempoE.getVector().should.equal(nameE+':'+value);
+				tempoE.getScore().should.equal(score);
+			});
+
+			it('Test Exploit Code Maturity : '+testSetE[4].value, function () {
+				var value = testSetE[4].value;
+				var score = testSetE[4].score;
+				var tempoE = new CVSS3.TemporalMetrics.E(value);
+				tempoE.getName().should.equal(nameE);
+				tempoE.getVector().should.equal(nameE+':'+value);
+				tempoE.getScore().should.equal(score);
+			});
+
+		});
+
+		describe('tempo-rl', function () {
+
+			var testSetRL = [
+				{"value": 'X', "score": 1.00},
+				{"value": 'U', "score": 1.00},
+				{"value": 'W', "score": 0.97},
+				{"value": 'T', "score": 0.96},
+				{"value": 'O', "score": 0.95}
+			];
+			var nameRL = 'RL';
+
+			it('Test Remediation Level : '+testSetRL[0].value, function () {
+				var value = testSetRL[0].value;
+				var score = testSetRL[0].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RL(value);
+				tempoRL.getName().should.equal(nameRL);
+				tempoRL.getVector().should.equal(nameRL+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Remediation Level : null', function () {
+				var value = testSetRL[0].value;
+				var score = testSetRL[0].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RL(null);
+				tempoRL.getName().should.equal(nameRL);
+				tempoRL.getVector().should.equal(nameRL+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Remediation Level : undefined', function () {
+				var value = testSetRL[0].value;
+				var score = testSetRL[0].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RL();
+				tempoRL.getName().should.equal(nameRL);
+				tempoRL.getVector().should.equal(nameRL+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Remediation Level : '+testSetRL[1].value, function () {
+				var value = testSetRL[1].value;
+				var score = testSetRL[1].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RL(value);
+				tempoRL.getName().should.equal(nameRL);
+				tempoRL.getVector().should.equal(nameRL+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Remediation Level : '+testSetRL[2].value, function () {
+				var value = testSetRL[2].value;
+				var score = testSetRL[2].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RL(value);
+				tempoRL.getName().should.equal(nameRL);
+				tempoRL.getVector().should.equal(nameRL+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Remediation Level : '+testSetRL[3].value, function () {
+				var value = testSetRL[3].value;
+				var score = testSetRL[3].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RL(value);
+				tempoRL.getName().should.equal(nameRL);
+				tempoRL.getVector().should.equal(nameRL+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Remediation Level : '+testSetRL[4].value, function () {
+				var value = testSetRL[4].value;
+				var score = testSetRL[4].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RL(value);
+				tempoRL.getName().should.equal(nameRL);
+				tempoRL.getVector().should.equal(nameRL+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+		});
+
+		describe('tempo-rc', function () {
+
+			var testSetRC = [
+				{"value": 'X', "score": 1.00},
+				{"value": 'C', "score": 1.00},
+				{"value": 'R', "score": 0.96},
+				{"value": 'U', "score": 0.92},
+			];
+			var nameRC = 'RC';
+
+			it('Test Report Confidence : '+testSetRC[0].value, function () {
+				var value = testSetRC[0].value;
+				var score = testSetRC[0].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RC(value);
+				tempoRL.getName().should.equal(nameRC);
+				tempoRL.getVector().should.equal(nameRC+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Report Confidence : null', function () {
+				var value = testSetRC[0].value;
+				var score = testSetRC[0].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RC(null);
+				tempoRL.getName().should.equal(nameRC);
+				tempoRL.getVector().should.equal(nameRC+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Report Confidence : undefined', function () {
+				var value = testSetRC[0].value;
+				var score = testSetRC[0].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RC();
+				tempoRL.getName().should.equal(nameRC);
+				tempoRL.getVector().should.equal(nameRC+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Report Confidence : '+testSetRC[1].value, function () {
+				var value = testSetRC[1].value;
+				var score = testSetRC[1].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RC(value);
+				tempoRL.getName().should.equal(nameRC);
+				tempoRL.getVector().should.equal(nameRC+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Report Confidence : '+testSetRC[2].value, function () {
+				var value = testSetRC[2].value;
+				var score = testSetRC[2].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RC(value);
+				tempoRL.getName().should.equal(nameRC);
+				tempoRL.getVector().should.equal(nameRC+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+			it('Test Report Confidence : '+testSetRC[3].value, function () {
+				var value = testSetRC[3].value;
+				var score = testSetRC[3].score;
+				var tempoRL = new CVSS3.TemporalMetrics.RC(value);
+				tempoRL.getName().should.equal(nameRC);
+				tempoRL.getVector().should.equal(nameRC+':'+value);
+				tempoRL.getScore().should.equal(score);
+			});
+
+		});
+
+		it('Test Temporal Metrics : Input "Exploit Code Maturity" metric', function () {
+			var tempo = new CVSS3.TemporalMetrics(new CVSS3.TemporalMetrics.E('U'));
+			tempo.e.getVector().should.equal('E:U');
+			tempo.e.getScore().should.equal(0.91);
+		});
+
+		it('Test Temporal Metrics : Input "Remediation Level" metric', function () {
+			var tempo = new CVSS3.TemporalMetrics(new CVSS3.TemporalMetrics.RL('O'));
+			tempo.rl.getVector().should.equal('RL:O');
+			tempo.rl.getScore().should.equal(0.95);
+		});
+
+		it('Test Temporal Metrics : Input "Report Confidence" metric', function () {
+			var tempo = new CVSS3.TemporalMetrics(new CVSS3.TemporalMetrics.RC('U'));
+			tempo.rc.getVector().should.equal('RC:U');
+			tempo.rc.getScore().should.equal(0.92);
+		});
+
+		it('Test Temporal Metrics : Input all metric', function () {
+			var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937);
+			var tempo = new CVSS3.TemporalMetrics(new CVSS3.TemporalMetrics.E('U')
+													,new CVSS3.TemporalMetrics.RL('O')
+													,new CVSS3.TemporalMetrics.RC('U'));
+			var vector_Lo_score = vector_cve_2013_1937 + "/E:U/RL:O/RC:U";
+			tempo.getName().should.equal("TemporalMetrics");
+			tempo.getVector(base).should.equal(vector_Lo_score);
+			tempo.getScore(base).should.equal(4.9);
+		});
+
+		it('Test Temporal Metrics : Undefined', function () {
+			var vector_base10 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
+			var vector_not_defined = vector_base10 + "/E:X/RL:X/RC:X";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_not_defined);
+			base.getVector().should.equal(vector_base10);
+			base.getScore().should.equal(10.0);
+			var tempo = new CVSS3.TemporalMetrics();
+			tempo.getVector(base).should.equal(vector_not_defined);
+			tempo.getScore(base).should.equal(10.0);
+		});
+
+		it('Test Temporal Metrics : Not Defined', function () {
+			var vector_base10_1 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
+			var vector_not_defined = vector_base10_1 + "/E:X/RL:X/RC:X";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_not_defined);
+			base.getVector().should.equal(vector_base10_1);
+			base.getScore().should.equal(10.0);
+			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_not_defined);
+			tempo.getVector(base).should.equal(vector_not_defined);
+			tempo.getScore(base).should.equal(10.0);
+		});
+
+		it('Test Temporal Metrics : Hi Score', function () {
+			var vector_base10_2 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
+			var vector_hi_score = vector_base10_2 + "/E:H/RL:U/RC:C";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_hi_score);
+			base.getVector().should.equal(vector_base10_2);
+			base.getScore().should.equal(10.0);
+			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_hi_score);
+			tempo.getVector(base).should.equal(vector_hi_score);
+			tempo.getScore(base).should.equal(10.0);
+		});
+
+		it('Test Temporal Metrics : Lo Score', function () {
+			var vector_base10_3 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
+			var vector_Lo_score = vector_base10_3 + "/E:U/RL:O/RC:U";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_Lo_score);
+			base.getVector().should.equal(vector_base10_3);
+			base.getScore().should.equal(10.0);
+			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_Lo_score);
+			tempo.getVector(base).should.equal(vector_Lo_score);
+			tempo.getScore(base).should.equal(8.0);
+		});
+
+		it('Test Temporal Metrics : Zero', function () {
+			var vector_base0 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N";
+			var vector_0_score = vector_base0 + "/E:H/RL:U/RC:C";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_0_score);
+			base.getVector().should.equal(vector_base0);
+			base.getScore().should.equal(0.0);
+			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_0_score);
+			tempo.getVector(base).should.equal(vector_0_score);
+			tempo.getScore(base).should.equal(0.0);
+		});
+
+		it('Test Temporal Metrics : CVE-2013-1937', function () {
+			var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937);
+			var vector_hi_score = vector_cve_2013_1937 + "/E:H/RL:U/RC:C";
+			var tempoHi = (new CVSS3.TemporalMetrics()).importVector(vector_hi_score);
+			tempoHi.getVector(base).should.equal(vector_hi_score);
+			tempoHi.getScore(base).should.equal(6.1);
+			var vector_Lo_score = vector_cve_2013_1937 + "/E:U/RL:O/RC:U";
+			var tempoLo = (new CVSS3.TemporalMetrics()).importVector(vector_Lo_score);
+			tempoLo.getVector(base).should.equal(vector_Lo_score);
+			tempoLo.getScore(base).should.equal(4.9);
+		});
 	});
 
 });
