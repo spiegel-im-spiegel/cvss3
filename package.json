@@ -1,6 +1,6 @@
 {
   "name": "cvss3",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "CVSS (Common Vulnerability Scoring System) Version 3",
   "main": "index.js",
   "directories": {
