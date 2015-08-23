@@ -121,45 +121,53 @@ describe('cvss3', function () {
 		describe('base-s', function () {
 
 			var testSetS = [
-				{"value": 'C', "score": 0.0},
-				{"value": 'U', "score": 0.0},
+				{"value": 'C', "score": 0.0, "flag": true},
+				{"value": 'U', "score": 0.0, "flag": false},
 			];
 			var nameS = 'S';
 
 			it('Test Scope : '+testSetS[0].value, function () {
 				var value = testSetS[0].value;
 				var score = testSetS[0].score;
+				var flagChange = testSetS[0].flag;
 				var baseS = new CVSS3.BaseMetrics.S(value);
 				baseS.getName().should.equal(nameS);
 				baseS.getVector().should.equal(nameS+':'+value);
 				baseS.getScore().should.equal(score);
+				baseS.isChange().should.equal(flagChange);
 			});
 
 			it('Test Scope : '+testSetS[1].value, function () {
 				var value = testSetS[1].value;
 				var score = testSetS[1].score;
+				var flagChange = testSetS[1].flag;
 				var baseS = new CVSS3.BaseMetrics.S(value);
 				baseS.getName().should.equal(nameS);
 				baseS.getVector().should.equal(nameS+':'+value);
 				baseS.getScore().should.equal(score);
+				baseS.isChange().should.equal(flagChange);
 			});
 
 			it('Test Scope : null', function () {
 				var value = testSetS[1].value;
 				var score = testSetS[1].score;
+				var flagChange = testSetS[1].flag;
 				var baseS = new CVSS3.BaseMetrics.S(null);
 				baseS.getName().should.equal(nameS);
 				baseS.getVector().should.equal(nameS+':'+value);
 				baseS.getScore().should.equal(score);
+				baseS.isChange().should.equal(flagChange);
 			});
 
 			it('Test Scope : undefined', function () {
 				var value = testSetS[1].value;
 				var score = testSetS[1].score;
+				var flagChange = testSetS[1].flag;
 				var baseS = new CVSS3.BaseMetrics.S(); //no argument
 				baseS.getName().should.equal(nameS);
 				baseS.getVector().should.equal(nameS+':'+value);
 				baseS.getScore().should.equal(score);
+				baseS.isChange().should.equal(flagChange);
 			});
 
 		});
@@ -180,7 +188,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(value);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeU).should.equal(score);
+				basePR.getScore(scopeU.isChange()).should.equal(score);
 				basePR.getScore(null).should.equal(score);
 				basePR.getScore().should.equal(score);
 			});
@@ -191,9 +199,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(value);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeU).should.equal(score);
-				basePR.getScore(null).should.equal(score);
-				basePR.getScore().should.equal(score);
+				basePR.getScore(scopeU.isChange()).should.equal(score);
 			});
 
 			it('Test Privileges Required : '+testSetPR1[2].value+' (Scope U)', function () {
@@ -202,9 +208,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(value);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeU).should.equal(score);
-				basePR.getScore(null).should.equal(score);
-				basePR.getScore().should.equal(score);
+				basePR.getScore(scopeU.isChange()).should.equal(score);
 			});
 
 			it('Test Privileges Required : null'+' (Scope U)', function () {
@@ -213,9 +217,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(null);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeU).should.equal(score);
-				basePR.getScore(null).should.equal(score);
-				basePR.getScore().should.equal(score);
+				basePR.getScore(scopeU.isChange()).should.equal(score);
 			});
 
 			it('Test Privileges Required : undefined'+' (Scope U)', function () {
@@ -224,9 +226,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(); //no argument
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeU).should.equal(score);
-				basePR.getScore(null).should.equal(score);
-				basePR.getScore().should.equal(score);
+				basePR.getScore(scopeU.isChange()).should.equal(score);
 			});
 
 			var testSetPR2 = [
@@ -242,7 +242,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(value);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeC).should.equal(score);
+				basePR.getScore(scopeC.isChange()).should.equal(score);
 			});
 
 			it('Test Privileges Required : '+testSetPR2[1].value+' (Scope C)', function () {
@@ -251,7 +251,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(value);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeC).should.equal(score);
+				basePR.getScore(scopeC.isChange()).should.equal(score);
 			});
 
 			it('Test Privileges Required : '+testSetPR2[2].value+' (Scope C)', function () {
@@ -260,7 +260,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(value);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeC).should.equal(score);
+				basePR.getScore(scopeC.isChange()).should.equal(score);
 			});
 
 			it('Test Privileges Required : null'+' (Scope C)', function () {
@@ -269,7 +269,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(null);
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeC).should.equal(score);
+				basePR.getScore(scopeC.isChange()).should.equal(score);
 			});
 
 			it('Test Privileges Required : undefined'+' (Scope C)', function () {
@@ -278,7 +278,7 @@ describe('cvss3', function () {
 				var basePR = new CVSS3.BaseMetrics.PR(); //no argument
 				basePR.getName().should.equal(namePR);
 				basePR.getVector().should.equal(namePR+':'+value);
-				basePR.getScore(scopeC).should.equal(score);
+				basePR.getScore(scopeC.isChange()).should.equal(score);
 			});
 
 		});
@@ -575,13 +575,13 @@ describe('cvss3', function () {
 
 		it('Test Base Metrics : CVE-2013-1937', function () {
 			var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937);
+			var base = new CVSS3.BaseMetrics(vector_cve_2013_1937);
 			base.getVector().should.equal(vector_cve_2013_1937);
 			base.getScore().should.equal(6.1);
 		});
 		it('Test Base Metrics : CVE-2013-1937 not CVSSv3', function () {
 			var vector_cve_2013_1937e = "AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937e);
+			var base = new CVSS3.BaseMetrics(vector_cve_2013_1937e);
 			base.getScore().should.equal(0.0);
 		});
 
@@ -981,7 +981,7 @@ describe('cvss3', function () {
 		it('Test Temporal Metrics : Undefined', function () {
 			var vector_base10 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
 			var vector_not_defined = vector_base10 + "/E:X/RL:X/RC:X";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_not_defined);
+			var base = new CVSS3.BaseMetrics(vector_not_defined);
 			base.getVector().should.equal(vector_base10);
 			base.getScore().should.equal(10.0);
 			var tempo = new CVSS3.TemporalMetrics();
@@ -992,10 +992,10 @@ describe('cvss3', function () {
 		it('Test Temporal Metrics : Not Defined', function () {
 			var vector_base10_1 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
 			var vector_not_defined = vector_base10_1 + "/E:X/RL:X/RC:X";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_not_defined);
+			var base = new CVSS3.BaseMetrics(vector_not_defined);
 			base.getVector().should.equal(vector_base10_1);
 			base.getScore().should.equal(10.0);
-			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_not_defined);
+			var tempo = new CVSS3.TemporalMetrics(vector_not_defined);
 			tempo.getVector(base).should.equal(vector_not_defined);
 			tempo.getScore(base).should.equal(10.0);
 		});
@@ -1003,10 +1003,10 @@ describe('cvss3', function () {
 		it('Test Temporal Metrics : Hi Score', function () {
 			var vector_base10_2 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
 			var vector_hi_score = vector_base10_2 + "/E:H/RL:U/RC:C";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_hi_score);
+			var base = new CVSS3.BaseMetrics(vector_hi_score);
 			base.getVector().should.equal(vector_base10_2);
 			base.getScore().should.equal(10.0);
-			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_hi_score);
+			var tempo = new CVSS3.TemporalMetrics(vector_hi_score);
 			tempo.getVector(base).should.equal(vector_hi_score);
 			tempo.getScore(base).should.equal(10.0);
 		});
@@ -1014,10 +1014,10 @@ describe('cvss3', function () {
 		it('Test Temporal Metrics : Lo Score', function () {
 			var vector_base10_3 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H";
 			var vector_Lo_score = vector_base10_3 + "/E:U/RL:O/RC:U";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_Lo_score);
+			var base = new CVSS3.BaseMetrics(vector_Lo_score);
 			base.getVector().should.equal(vector_base10_3);
 			base.getScore().should.equal(10.0);
-			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_Lo_score);
+			var tempo = new CVSS3.TemporalMetrics(vector_Lo_score);
 			tempo.getVector(base).should.equal(vector_Lo_score);
 			tempo.getScore(base).should.equal(8.0);
 		});
@@ -1025,26 +1025,1230 @@ describe('cvss3', function () {
 		it('Test Temporal Metrics : Zero', function () {
 			var vector_base0 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N";
 			var vector_0_score = vector_base0 + "/E:H/RL:U/RC:C";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_0_score);
+			var base = new CVSS3.BaseMetrics(vector_0_score);
 			base.getVector().should.equal(vector_base0);
 			base.getScore().should.equal(0.0);
-			var tempo = (new CVSS3.TemporalMetrics()).importVector(vector_0_score);
+			var tempo = new CVSS3.TemporalMetrics(vector_0_score);
 			tempo.getVector(base).should.equal(vector_0_score);
 			tempo.getScore(base).should.equal(0.0);
 		});
 
 		it('Test Temporal Metrics : CVE-2013-1937', function () {
 			var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
-			var base = (new CVSS3.BaseMetrics()).importVector(vector_cve_2013_1937);
+			var base = new CVSS3.BaseMetrics(vector_cve_2013_1937);
 			var vector_hi_score = vector_cve_2013_1937 + "/E:H/RL:U/RC:C";
-			var tempoHi = (new CVSS3.TemporalMetrics()).importVector(vector_hi_score);
+			var tempoHi = new CVSS3.TemporalMetrics(vector_hi_score);
 			tempoHi.getVector(base).should.equal(vector_hi_score);
 			tempoHi.getScore(base).should.equal(6.1);
 			var vector_Lo_score = vector_cve_2013_1937 + "/E:U/RL:O/RC:U";
-			var tempoLo = (new CVSS3.TemporalMetrics()).importVector(vector_Lo_score);
+			var tempoLo = new CVSS3.TemporalMetrics(vector_Lo_score);
 			tempoLo.getVector(base).should.equal(vector_Lo_score);
 			tempoLo.getScore(base).should.equal(4.9);
 		});
+	});
+
+	describe('environmental', function () {
+
+		describe('env-cr', function () {
+
+			var testSetCR = [
+				{"value": 'X', "score": 1.00},
+				{"value": 'H', "score": 1.50},
+				{"value": 'M', "score": 1.00},
+				{"value": 'L', "score": 0.50}
+			];
+			var nameCR = 'CR';
+
+			it('Test Confidentiality Requirement : '+testSetCR[0].value, function () {
+				var value = testSetCR[0].value;
+				var score = testSetCR[0].score;
+				var tempoCR = new CVSS3.EnvironmentalMetrics.CR(value);
+				tempoCR.getName().should.equal(nameCR);
+				tempoCR.getVector().should.equal(nameCR+':'+value);
+				tempoCR.getScore().should.equal(score);
+			});
+
+			it('Test Confidentiality Requirement : null', function () {
+				var value = testSetCR[0].value;
+				var score = testSetCR[0].score;
+				var tempoCR = new CVSS3.EnvironmentalMetrics.CR(null);
+				tempoCR.getName().should.equal(nameCR);
+				tempoCR.getVector().should.equal(nameCR+':'+value);
+				tempoCR.getScore().should.equal(score);
+			});
+
+			it('Test Confidentiality Requirement : undefined', function () {
+				var value = testSetCR[0].value;
+				var score = testSetCR[0].score;
+				var tempoCR = new CVSS3.EnvironmentalMetrics.CR();
+				tempoCR.getName().should.equal(nameCR);
+				tempoCR.getVector().should.equal(nameCR+':'+value);
+				tempoCR.getScore().should.equal(score);
+			});
+
+			it('Test Confidentiality Requirement : '+testSetCR[1].value, function () {
+				var value = testSetCR[1].value;
+				var score = testSetCR[1].score;
+				var tempoCR = new CVSS3.EnvironmentalMetrics.CR(value);
+				tempoCR.getName().should.equal(nameCR);
+				tempoCR.getVector().should.equal(nameCR+':'+value);
+				tempoCR.getScore().should.equal(score);
+			});
+
+			it('Test Confidentiality Requirement : '+testSetCR[2].value, function () {
+				var value = testSetCR[2].value;
+				var score = testSetCR[2].score;
+				var tempoCR = new CVSS3.EnvironmentalMetrics.CR(value);
+				tempoCR.getName().should.equal(nameCR);
+				tempoCR.getVector().should.equal(nameCR+':'+value);
+				tempoCR.getScore().should.equal(score);
+			});
+
+			it('Test Confidentiality Requirement : '+testSetCR[3].value, function () {
+				var value = testSetCR[3].value;
+				var score = testSetCR[3].score;
+				var tempoCR = new CVSS3.EnvironmentalMetrics.CR(value);
+				tempoCR.getName().should.equal(nameCR);
+				tempoCR.getVector().should.equal(nameCR+':'+value);
+				tempoCR.getScore().should.equal(score);
+			});
+
+		});
+
+		describe('env-ir', function () {
+
+			var testSetIR = [
+				{"value": 'X', "score": 1.00},
+				{"value": 'H', "score": 1.50},
+				{"value": 'M', "score": 1.00},
+				{"value": 'L', "score": 0.50}
+			];
+			var nameIR = 'IR';
+
+			it('Test Integrity Requirement : '+testSetIR[0].value, function () {
+				var value = testSetIR[0].value;
+				var score = testSetIR[0].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.IR(value);
+				tempoIR.getName().should.equal(nameIR);
+				tempoIR.getVector().should.equal(nameIR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Integrity Requirement : null', function () {
+				var value = testSetIR[0].value;
+				var score = testSetIR[0].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.IR(null);
+				tempoIR.getName().should.equal(nameIR);
+				tempoIR.getVector().should.equal(nameIR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Integrity Requirement : undefined', function () {
+				var value = testSetIR[0].value;
+				var score = testSetIR[0].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.IR();
+				tempoIR.getName().should.equal(nameIR);
+				tempoIR.getVector().should.equal(nameIR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Integrity Requirement : '+testSetIR[1].value, function () {
+				var value = testSetIR[1].value;
+				var score = testSetIR[1].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.IR(value);
+				tempoIR.getName().should.equal(nameIR);
+				tempoIR.getVector().should.equal(nameIR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Integrity Requirement : '+testSetIR[2].value, function () {
+				var value = testSetIR[2].value;
+				var score = testSetIR[2].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.IR(value);
+				tempoIR.getName().should.equal(nameIR);
+				tempoIR.getVector().should.equal(nameIR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Integrity Requirement : '+testSetIR[3].value, function () {
+				var value = testSetIR[3].value;
+				var score = testSetIR[3].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.IR(value);
+				tempoIR.getName().should.equal(nameIR);
+				tempoIR.getVector().should.equal(nameIR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+		});
+
+		describe('env-ar', function () {
+
+			var testSetAR = [
+				{"value": 'X', "score": 1.00},
+				{"value": 'H', "score": 1.50},
+				{"value": 'M', "score": 1.00},
+				{"value": 'L', "score": 0.50}
+			];
+			var nameAR = 'AR';
+
+			it('Test Availability Requirement : '+testSetAR[0].value, function () {
+				var value = testSetAR[0].value;
+				var score = testSetAR[0].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.AR(value);
+				tempoIR.getName().should.equal(nameAR);
+				tempoIR.getVector().should.equal(nameAR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Availability Requirement : null', function () {
+				var value = testSetAR[0].value;
+				var score = testSetAR[0].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.AR(null);
+				tempoIR.getName().should.equal(nameAR);
+				tempoIR.getVector().should.equal(nameAR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Availability Requirement : undefined', function () {
+				var value = testSetAR[0].value;
+				var score = testSetAR[0].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.AR();
+				tempoIR.getName().should.equal(nameAR);
+				tempoIR.getVector().should.equal(nameAR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Availability Requirement : '+testSetAR[1].value, function () {
+				var value = testSetAR[1].value;
+				var score = testSetAR[1].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.AR(value);
+				tempoIR.getName().should.equal(nameAR);
+				tempoIR.getVector().should.equal(nameAR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Availability Requirement : '+testSetAR[2].value, function () {
+				var value = testSetAR[2].value;
+				var score = testSetAR[2].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.AR(value);
+				tempoIR.getName().should.equal(nameAR);
+				tempoIR.getVector().should.equal(nameAR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+			it('Test Availability Requirement : '+testSetAR[3].value, function () {
+				var value = testSetAR[3].value;
+				var score = testSetAR[3].score;
+				var tempoIR = new CVSS3.EnvironmentalMetrics.AR(value);
+				tempoIR.getName().should.equal(nameAR);
+				tempoIR.getVector().should.equal(nameAR+':'+value);
+				tempoIR.getScore().should.equal(score);
+			});
+
+		});
+
+		describe('env-mav', function () {
+
+			var testSetMAV = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'N', "score": 0.85},
+				{"value": 'A', "score": 0.62},
+				{"value": 'L', "score": 0.55},
+				{"value": 'P', "score": 0.20}
+			];
+			var vector_base_av_n = "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var vector_base_av_a = "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var vector_base_av_l = "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var vector_base_av_p = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMAV = 'MAV';
+
+			it('Test Modified Attack Vector : '+testSetMAV[0].value+' (AV:N)', function () {
+				var value = testSetMAV[0].value;
+				var score = testSetMAV[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_n);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : '+testSetMAV[0].value+' (AV:A)', function () {
+				var value = testSetMAV[0].value;
+				var score = testSetMAV[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_a);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : '+testSetMAV[0].value+' (AV:L)', function () {
+				var value = testSetMAV[0].value;
+				var score = testSetMAV[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_l);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : '+testSetMAV[0].value+' (AV:P)', function () {
+				var value = testSetMAV[0].value;
+				var score = testSetMAV[4].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_p);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+				envMav.getScore(null).should.equal(score);
+				envMav.getScore().should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : null', function () {
+				var value = testSetMAV[0].value;
+				var score = testSetMAV[4].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_p);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(null);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+				envMav.getScore(null).should.equal(score);
+				envMav.getScore().should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : undefined', function () {
+				var value = testSetMAV[0].value;
+				var score = testSetMAV[4].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_p);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(); //no argument
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+				envMav.getScore(null).should.equal(score);
+				envMav.getScore().should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : '+testSetMAV[1].value, function () {
+				var value = testSetMAV[1].value;
+				var score = testSetMAV[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_n);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : '+testSetMAV[2].value, function () {
+				var value = testSetMAV[2].value;
+				var score = testSetMAV[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_n);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : '+testSetMAV[3].value, function () {
+				var value = testSetMAV[3].value;
+				var score = testSetMAV[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_n);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Vector : '+testSetMAV[4].value, function () {
+				var value = testSetMAV[4].value;
+				var score = testSetMAV[4].score;
+				var base = new CVSS3.BaseMetrics(vector_base_av_n);
+				var envMav = new CVSS3.EnvironmentalMetrics.MAV(value);
+				envMav.getName().should.equal(nameMAV);
+				envMav.getVector().should.equal(nameMAV+':'+value);
+				envMav.getScore(base).should.equal(score);
+			});
+
+		});
+
+		describe('env-mac', function () {
+
+			var testSetMAC = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'L', "score": 0.77},
+				{"value": 'H', "score": 0.44},
+			];
+			var vector_base_ac_l = "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var vector_base_ac_h = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMAC = 'MAC';
+
+			it('Test Modified Attack Complexity : '+testSetMAC[0].value+' (AC:L)', function () {
+				var value = testSetMAC[0].value;
+				var score = testSetMAC[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ac_l);
+				var envMAC = new CVSS3.EnvironmentalMetrics.MAC(value);
+				envMAC.getName().should.equal(nameMAC);
+				envMAC.getVector().should.equal(nameMAC+':'+value);
+				envMAC.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Complexity : '+testSetMAC[0].value+' (AC:H)', function () {
+				var value = testSetMAC[0].value;
+				var score = testSetMAC[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ac_h);
+				var envMAC = new CVSS3.EnvironmentalMetrics.MAC(value);
+				envMAC.getName().should.equal(nameMAC);
+				envMAC.getVector().should.equal(nameMAC+':'+value);
+				envMAC.getScore(base).should.equal(score);
+				envMAC.getScore(null).should.equal(score);
+				envMAC.getScore().should.equal(score);
+			});
+
+			it('Test Modified Attack Complexity : null', function () {
+				var value = testSetMAC[0].value;
+				var score = testSetMAC[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ac_h);
+				var envMAC = new CVSS3.EnvironmentalMetrics.MAC(null);
+				envMAC.getName().should.equal(nameMAC);
+				envMAC.getVector().should.equal(nameMAC+':'+value);
+				envMAC.getScore(base).should.equal(score);
+				envMAC.getScore(null).should.equal(score);
+				envMAC.getScore().should.equal(score);
+			});
+
+			it('Test Modified Attack Complexity : undefined', function () {
+				var value = testSetMAC[0].value;
+				var score = testSetMAC[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ac_h);
+				var envMAC = new CVSS3.EnvironmentalMetrics.MAC(); //no argument
+				envMAC.getName().should.equal(nameMAC);
+				envMAC.getVector().should.equal(nameMAC+':'+value);
+				envMAC.getScore(base).should.equal(score);
+				envMAC.getScore(null).should.equal(score);
+				envMAC.getScore().should.equal(score);
+			});
+
+			it('Test Modified Attack Complexity : '+testSetMAC[1].value, function () {
+				var value = testSetMAC[1].value;
+				var score = testSetMAC[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ac_l);
+				var envMAC = new CVSS3.EnvironmentalMetrics.MAC(value);
+				envMAC.getName().should.equal(nameMAC);
+				envMAC.getVector().should.equal(nameMAC+':'+value);
+				envMAC.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Attack Complexity : '+testSetMAC[2].value, function () {
+				var value = testSetMAC[2].value;
+				var score = testSetMAC[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ac_l);
+				var envMAC = new CVSS3.EnvironmentalMetrics.MAC(value);
+				envMAC.getName().should.equal(nameMAC);
+				envMAC.getVector().should.equal(nameMAC+':'+value);
+				envMAC.getScore(base).should.equal(score);
+			});
+
+		});
+
+		describe('env-ms', function () {
+
+			var testSetMS = [
+				{"value": 'X', "score": 0.0, "flag": true},
+				{"value": 'C', "score": 0.0, "flag": true},
+				{"value": 'U', "score": 0.0, "flag": false},
+			];
+			var vector_base_s_c = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:N";
+			var vector_base_s_u = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMS = 'MS';
+
+			it('Test Modified Scope : '+testSetMS[0].value+' (S:C)', function () {
+				var value = testSetMS[0].value;
+				var score = testSetMS[1].score;
+				var flagChange = testSetMS[1].flag;
+				var base = new CVSS3.BaseMetrics(vector_base_s_c);
+				var envMS = new CVSS3.EnvironmentalMetrics.MS(value);
+				envMS.getName().should.equal(nameMS);
+				envMS.getVector().should.equal(nameMS+':'+value);
+				envMS.getScore().should.equal(score);
+				envMS.isChange(base).should.equal(flagChange);
+			});
+
+			it('Test Modified Scope : '+testSetMS[0].value+' (S:U)', function () {
+				var value = testSetMS[0].value;
+				var score = testSetMS[2].score;
+				var flagChange = testSetMS[2].flag;
+				var base = new CVSS3.BaseMetrics(vector_base_s_u);
+				var envMS = new CVSS3.EnvironmentalMetrics.MS(value);
+				envMS.getName().should.equal(nameMS);
+				envMS.getVector().should.equal(nameMS+':'+value);
+				envMS.getScore().should.equal(score);
+				envMS.isChange(base).should.equal(flagChange);
+			});
+
+			it('Test Modified Scope : null', function () {
+				var value = testSetMS[0].value;
+				var score = testSetMS[2].score;
+				var flagChange = testSetMS[2].flag;
+				var base = new CVSS3.BaseMetrics(vector_base_s_u);
+				var envMS = new CVSS3.EnvironmentalMetrics.MS(null);
+				envMS.getName().should.equal(nameMS);
+				envMS.getVector().should.equal(nameMS+':'+value);
+				envMS.getScore().should.equal(score);
+				envMS.isChange(base).should.equal(flagChange);
+				envMS.isChange(null).should.equal(flagChange);
+				envMS.isChange().should.equal(flagChange);
+			});
+
+			it('Test Modified Scope : undefined', function () {
+				var value = testSetMS[0].value;
+				var score = testSetMS[2].score;
+				var flagChange = testSetMS[2].flag;
+				var base = new CVSS3.BaseMetrics(vector_base_s_u);
+				var envMS = new CVSS3.EnvironmentalMetrics.MS(); //no argument
+				envMS.getName().should.equal(nameMS);
+				envMS.getVector().should.equal(nameMS+':'+value);
+				envMS.getScore().should.equal(score);
+				envMS.isChange(base).should.equal(flagChange);
+				envMS.isChange(null).should.equal(flagChange);
+				envMS.isChange().should.equal(flagChange);
+			});
+
+			it('Test Modified Scope : '+testSetMS[1].value, function () {
+				var value = testSetMS[1].value;
+				var score = testSetMS[1].score;
+				var flagChange = testSetMS[1].flag;
+				var base = new CVSS3.BaseMetrics(vector_base_s_c);
+				var envMS = new CVSS3.EnvironmentalMetrics.MS(value);
+				envMS.getName().should.equal(nameMS);
+				envMS.getVector().should.equal(nameMS+':'+value);
+				envMS.getScore().should.equal(score);
+				envMS.isChange(base).should.equal(flagChange);
+			});
+
+			it('Test Modified Scope : '+testSetMS[2].value, function () {
+				var value = testSetMS[2].value;
+				var score = testSetMS[2].score;
+				var flagChange = testSetMS[2].flag;
+				var base = new CVSS3.BaseMetrics(vector_base_s_c);
+				var envMS = new CVSS3.EnvironmentalMetrics.MS(value);
+				envMS.getName().should.equal(nameMS);
+				envMS.getVector().should.equal(nameMS+':'+value);
+				envMS.getScore().should.equal(score);
+				envMS.isChange(base).should.equal(flagChange);
+			});
+
+		});
+
+		describe('env-mpr', function () {
+
+			var testSetMPR1 = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'N', "score": 0.85},
+				{"value": 'L', "score": 0.62},
+				{"value": 'H', "score": 0.27}
+			];
+			var vector_base_pr_n = "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N";
+			var vector_base_pr_l = "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:N";
+			var vector_base_pr_h = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMPR = 'MPR';
+			var scopeMU = new CVSS3.EnvironmentalMetrics.MS('U');
+
+			it('Test Modified Privileges Required : '+testSetMPR1[0].value+' (Scope U) (PR:N)', function () {
+				var value = testSetMPR1[0].value;
+				var score = testSetMPR1[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_n);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR1[0].value+' (Scope U) (PR:L)', function () {
+				var value = testSetMPR1[0].value;
+				var score = testSetMPR1[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_l);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR1[0].value+' (Scope U) (PR:H)', function () {
+				var value = testSetMPR1[0].value;
+				var score = testSetMPR1[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+				envMPR.getScore(scopeMU.isChange(base), null).should.equal(score);
+				envMPR.getScore(scopeMU.isChange(base)).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : null'+' (Scope U)', function () {
+				var value = testSetMPR1[0].value;
+				var score = testSetMPR1[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(null);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+				envMPR.getScore(scopeMU.isChange(base), null).should.equal(score);
+				envMPR.getScore(scopeMU.isChange(base)).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : undefined'+' (Scope U)', function () {
+				var value = testSetMPR1[0].value;
+				var score = testSetMPR1[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(); //no argument
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+				envMPR.getScore(scopeMU.isChange(base), null).should.equal(score);
+				envMPR.getScore(scopeMU.isChange(base)).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR1[1].value+' (Scope U)', function () {
+				var value = testSetMPR1[1].value;
+				var score = testSetMPR1[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR1[2].value+' (Scope U)', function () {
+				var value = testSetMPR1[2].value;
+				var score = testSetMPR1[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR1[3].value+' (Scope U)', function () {
+				var value = testSetMPR1[3].value;
+				var score = testSetMPR1[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMU.isChange(base), base).should.equal(score);
+			});
+
+			var testSetMPR2 = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'N', "score": 0.85},
+				{"value": 'L', "score": 0.68},
+				{"value": 'H', "score": 0.50}
+			];
+			var scopeMC = new CVSS3.EnvironmentalMetrics.MS('C');
+
+			it('Test Modified Privileges Required : '+testSetMPR2[0].value+' (Scope C) (PR:N)', function () {
+				var value = testSetMPR2[0].value;
+				var score = testSetMPR2[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_n);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR2[0].value+' (Scope C) (PR:L)', function () {
+				var value = testSetMPR2[0].value;
+				var score = testSetMPR2[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_l);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR2[0].value+' (Scope C) (PR:H)', function () {
+				var value = testSetMPR2[0].value;
+				var score = testSetMPR2[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : null'+' (Scope C)', function () {
+				var value = testSetMPR2[0].value;
+				var score = testSetMPR2[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(null);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : undefined'+' (Scope C)', function () {
+				var value = testSetMPR2[0].value;
+				var score = testSetMPR2[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(); //no argument
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR2[1].value+' (Scope C)', function () {
+				var value = testSetMPR2[1].value;
+				var score = testSetMPR2[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR2[2].value+' (Scope C)', function () {
+				var value = testSetMPR2[2].value;
+				var score = testSetMPR2[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+			it('Test Modified Privileges Required : '+testSetMPR2[3].value+' (Scope C)', function () {
+				var value = testSetMPR2[3].value;
+				var score = testSetMPR2[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_pr_h);
+				var envMPR = new CVSS3.EnvironmentalMetrics.MPR(value);
+				envMPR.getName().should.equal(nameMPR);
+				envMPR.getVector().should.equal(nameMPR+':'+value);
+				envMPR.getScore(scopeMC.isChange(base), base).should.equal(score);
+			});
+
+		});
+
+		describe('env-mui', function () {
+
+			var testSetMUI = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'N', "score": 0.85},
+				{"value": 'R', "score": 0.62}
+			];
+			var vector_base_ui_n = "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:N";
+			var vector_base_ui_r = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMUI = 'MUI';
+
+			it('Test Modified User Interaction : '+testSetMUI[0].value+' (UI:N)', function () {
+				var value = testSetMUI[0].value;
+				var score = testSetMUI[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ui_n);
+				var envMUI = new CVSS3.EnvironmentalMetrics.MUI(value);
+				envMUI.getName().should.equal(nameMUI);
+				envMUI.getVector().should.equal(nameMUI+':'+value);
+				envMUI.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified User Interaction : '+testSetMUI[0].value+' (UI:R)', function () {
+				var value = testSetMUI[0].value;
+				var score = testSetMUI[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ui_r);
+				var envMUI = new CVSS3.EnvironmentalMetrics.MUI(value);
+				envMUI.getName().should.equal(nameMUI);
+				envMUI.getVector().should.equal(nameMUI+':'+value);
+				envMUI.getScore(base).should.equal(score);
+				envMUI.getScore(null).should.equal(score);
+				envMUI.getScore().should.equal(score);
+			});
+
+			it('Test Modified User Interaction : null', function () {
+				var value = testSetMUI[0].value;
+				var score = testSetMUI[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ui_r);
+				var envMUI = new CVSS3.EnvironmentalMetrics.MUI(null);
+				envMUI.getName().should.equal(nameMUI);
+				envMUI.getVector().should.equal(nameMUI+':'+value);
+				envMUI.getScore(base).should.equal(score);
+				envMUI.getScore(null).should.equal(score);
+				envMUI.getScore().should.equal(score);
+			});
+
+			it('Test Modified User Interaction : undefined', function () {
+				var value = testSetMUI[0].value;
+				var score = testSetMUI[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ui_r);
+				var envMUI = new CVSS3.EnvironmentalMetrics.MUI(); //no argument
+				envMUI.getName().should.equal(nameMUI);
+				envMUI.getVector().should.equal(nameMUI+':'+value);
+				envMUI.getScore().should.equal(score);
+				envMUI.getScore(null).should.equal(score);
+				envMUI.getScore().should.equal(score);
+			});
+
+			it('Test Modified User Interaction : '+testSetMUI[1].value, function () {
+				var value = testSetMUI[1].value;
+				var score = testSetMUI[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ui_r);
+				var envMUI = new CVSS3.EnvironmentalMetrics.MUI(value);
+				envMUI.getName().should.equal(nameMUI);
+				envMUI.getVector().should.equal(nameMUI+':'+value);
+				envMUI.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified User Interaction : '+testSetMUI[2].value, function () {
+				var value = testSetMUI[2].value;
+				var score = testSetMUI[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_ui_r);
+				var envMUI = new CVSS3.EnvironmentalMetrics.MUI(value);
+				envMUI.getName().should.equal(nameMUI);
+				envMUI.getVector().should.equal(nameMUI+':'+value);
+				envMUI.getScore(base).should.equal(score);
+			});
+
+		});
+
+		describe('env-mc', function () {
+
+			var testSetMC = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'H', "score": 0.56},
+				{"value": 'L', "score": 0.22},
+				{"value": 'N', "score": 0.00}
+			];
+			var vector_base_c_h = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N";
+			var vector_base_c_l = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:N";
+			var vector_base_c_n = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMC = 'MC';
+
+			it('Test Modified Confidentiality Impact : '+testSetMC[0].value+' (C:H)', function () {
+				var value = testSetMC[0].value;
+				var score = testSetMC[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_h);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(value);
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Confidentiality Impact : '+testSetMC[0].value+' (C:L)', function () {
+				var value = testSetMC[0].value;
+				var score = testSetMC[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_l);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(value);
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Confidentiality Impact : '+testSetMC[0].value+' (C:N)', function () {
+				var value = testSetMC[0].value;
+				var score = testSetMC[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_n);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(value);
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Confidentiality Impact : null', function () {
+				var value = testSetMC[0].value;
+				var score = testSetMC[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_n);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(null);
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+				envMC.getScore(null).should.equal(score);
+				envMC.getScore().should.equal(score);
+			});
+
+			it('Test Modified Confidentiality Impact : undefined', function () {
+				var value = testSetMC[0].value;
+				var score = testSetMC[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_n);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(); //no argument
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+				envMC.getScore(null).should.equal(score);
+				envMC.getScore().should.equal(score);
+			});
+
+			it('Test Modified Confidentiality Impact : '+testSetMC[1].value, function () {
+				var value = testSetMC[1].value;
+				var score = testSetMC[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_n);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(value);
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Confidentiality Impact : '+testSetMC[2].value, function () {
+				var value = testSetMC[2].value;
+				var score = testSetMC[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_n);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(value);
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Confidentiality Impact : '+testSetMC[3].value, function () {
+				var value = testSetMC[3].value;
+				var score = testSetMC[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_c_n);
+				var envMC = new CVSS3.EnvironmentalMetrics.MC(value);
+				envMC.getName().should.equal(nameMC);
+				envMC.getVector().should.equal(nameMC+':'+value);
+				envMC.getScore(base).should.equal(score);
+			});
+
+		});
+
+		describe('env-mi', function () {
+
+			var testSetMI = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'H', "score": 0.56},
+				{"value": 'L', "score": 0.22},
+				{"value": 'N', "score": 0.00}
+			];
+			var vector_base_i_h = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:N";
+			var vector_base_i_l = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:N";
+			var vector_base_i_n = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMI = 'MI';
+
+			it('Test Modified Integrity Impact : '+testSetMI[0].value+' (I:H)', function () {
+				var value = testSetMI[0].value;
+				var score = testSetMI[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_h);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(value);
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Integrity Impact : '+testSetMI[0].value+' (I:L)', function () {
+				var value = testSetMI[0].value;
+				var score = testSetMI[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_l);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(value);
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Integrity Impact : '+testSetMI[0].value+' (I:N)', function () {
+				var value = testSetMI[0].value;
+				var score = testSetMI[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_n);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(value);
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Integrity Impact : null', function () {
+				var value = testSetMI[0].value;
+				var score = testSetMI[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_n);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(null);
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+				envMI.getScore(null).should.equal(score);
+				envMI.getScore().should.equal(score);
+			});
+
+			it('Test Modified Integrity Impact : undefined', function () {
+				var value = testSetMI[0].value;
+				var score = testSetMI[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_n);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(); //no argument
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+				envMI.getScore(null).should.equal(score);
+				envMI.getScore().should.equal(score);
+			});
+
+			it('Test Modified Integrity Impact : '+testSetMI[1].value, function () {
+				var value = testSetMI[1].value;
+				var score = testSetMI[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_n);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(value);
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Integrity Impact : '+testSetMI[2].value, function () {
+				var value = testSetMI[2].value;
+				var score = testSetMI[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_n);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(value);
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Integrity Impact : '+testSetMI[3].value, function () {
+				var value = testSetMI[3].value;
+				var score = testSetMI[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_i_n);
+				var envMI = new CVSS3.EnvironmentalMetrics.MI(value);
+				envMI.getName().should.equal(nameMI);
+				envMI.getVector().should.equal(nameMI+':'+value);
+				envMI.getScore(base).should.equal(score);
+			});
+
+		});
+
+		describe('env-ma', function () {
+
+			var testSetMA = [
+				{"value": 'X', "score": 0.00},
+				{"value": 'H', "score": 0.56},
+				{"value": 'L', "score": 0.22},
+				{"value": 'N', "score": 0.00}
+			];
+			var vector_base_a_h = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:H";
+			var vector_base_a_l = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:L";
+			var vector_base_a_n = "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N";
+			var nameMA = 'MA';
+
+			it('Test Modified Availability Impact : '+testSetMA[0].value+' (A:H)', function () {
+				var value = testSetMA[0].value;
+				var score = testSetMA[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_h);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(value);
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Availability Impact : '+testSetMA[0].value+' (A:L)', function () {
+				var value = testSetMA[0].value;
+				var score = testSetMA[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_l);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(value);
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Availability Impact : '+testSetMA[0].value+' (A:N)', function () {
+				var value = testSetMA[0].value;
+				var score = testSetMA[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_n);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(value);
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Availability Impact : null', function () {
+				var value = testSetMA[0].value;
+				var score = testSetMA[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_n);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(null);
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+				envMA.getScore(null).should.equal(score);
+				envMA.getScore().should.equal(score);
+			});
+
+			it('Test Modified Availability Impact : undefined', function () {
+				var value = testSetMA[0].value;
+				var score = testSetMA[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_n);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(); //no argument
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+				envMA.getScore(null).should.equal(score);
+				envMA.getScore().should.equal(score);
+			});
+
+			it('Test Modified Availability Impact : '+testSetMA[1].value, function () {
+				var value = testSetMA[1].value;
+				var score = testSetMA[1].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_n);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(value);
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Availability Impact : '+testSetMA[2].value, function () {
+				var value = testSetMA[2].value;
+				var score = testSetMA[2].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_n);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(value);
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+			});
+
+			it('Test Modified Availability Impact : '+testSetMA[3].value, function () {
+				var value = testSetMA[3].value;
+				var score = testSetMA[3].score;
+				var base = new CVSS3.BaseMetrics(vector_base_a_n);
+				var envMA = new CVSS3.EnvironmentalMetrics.MA(value);
+				envMA.getName().should.equal(nameMA);
+				envMA.getVector().should.equal(nameMA+':'+value);
+				envMA.getScore(base).should.equal(score);
+			});
+
+		});
+
+		it('Test Environmental Metrics : Input "Confidentiality Requirement" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.CR('H'));
+			env.cr.getVector().should.equal('CR:H');
+			env.cr.getScore().should.equal(1.50);
+		});
+
+		it('Test Environmental Metrics : Input "Integrity Requirement" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.IR('H'));
+			env.ir.getVector().should.equal('IR:H');
+			env.ir.getScore().should.equal(1.50);
+		});
+
+		it('Test Environmental Metrics : Input "Availability Requirement" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.AR('H'));
+			env.ar.getVector().should.equal('AR:H');
+			env.ar.getScore().should.equal(1.50);
+		});
+
+		it('Test Environmental Metrics : Input "Modified Attack Vector" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MAV('N'));
+			env.mav.getVector().should.equal('MAV:N');
+			env.mav.getScore().should.equal(0.85);
+		});
+
+		it('Test Environmental Metrics : Input "Modified Attack Complexity" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MAC('L'));
+			env.mac.getVector().should.equal('MAC:L');
+			env.mac.getScore().should.equal(0.77);
+		});
+
+		it('Test Environmental Metrics : Input "Modified Privileges Required" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MPR('N'));
+			env.mpr.getVector().should.equal('MPR:N');
+			env.mpr.getScore().should.equal(0.85);
+		});
+
+		it('Test Environmental Metrics : Input "Modified User Interaction" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MUI('N'));
+			env.mui.getVector().should.equal('MUI:N');
+			env.mui.getScore().should.equal(0.85);
+		});
+
+		it('Test Environmental Metrics : Input "Modified Scope" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MS('C'));
+			env.ms.getVector().should.equal('MS:C');
+		});
+
+		it('Test Environmental Metrics : Input "Modified Confidentiality Impact" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MC('H'));
+			env.mc.getVector().should.equal('MC:H');
+			env.mc.getScore().should.equal(0.56);
+		});
+
+		it('Test Environmental Metrics : Input "Modified Integrity Impact" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MI('H'));
+			env.mi.getVector().should.equal('MI:H');
+			env.mi.getScore().should.equal(0.56);
+		});
+
+		it('Test Environmental Metrics : Input "Modified Availability Impact" metric', function () {
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.MA('H'));
+			env.ma.getVector().should.equal('MA:H');
+			env.ma.getScore().should.equal(0.56);
+		});
+
+		it('Test Environmental Metrics : Input all metric', function () {
+			var vector_cve_2013_1937_full = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N" + "/E:H/RL:U/RC:C" + "/CR:M/IR:M/AR:M/MAV:N/MAC:L/MPR:N/MUI:R/MS:C/MC:L/MI:L/MA:N";
+			var base = new CVSS3.BaseMetrics(vector_cve_2013_1937_full);
+			var temporal = new CVSS3.TemporalMetrics(vector_cve_2013_1937_full);
+			var env = new CVSS3.EnvironmentalMetrics(new CVSS3.EnvironmentalMetrics.CR('M')
+													,new CVSS3.EnvironmentalMetrics.IR('M')
+													,new CVSS3.EnvironmentalMetrics.AR('M')
+													,new CVSS3.EnvironmentalMetrics.MAV('N')
+													,new CVSS3.EnvironmentalMetrics.MAC('L')
+													,new CVSS3.EnvironmentalMetrics.MPR('N')
+													,new CVSS3.EnvironmentalMetrics.MUI('R')
+													,new CVSS3.EnvironmentalMetrics.MS('C')
+													,new CVSS3.EnvironmentalMetrics.MC('L')
+													,new CVSS3.EnvironmentalMetrics.MI('L')
+													,new CVSS3.EnvironmentalMetrics.MA('N'));
+			env.getName().should.equal("EnvironmentalMetrics");
+			env.getVector(base, temporal).should.equal(vector_cve_2013_1937_full);
+			env.getScore(base, temporal).should.equal(6.1);
+		});
+
+		it('Test Environmental Metrics : CVE-2013-1937 (1)', function () {
+			var vector_cve_2013_1937_base = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var vector_temporal_x = "E:X/RL:X/RC:X";
+			var vector_env_x = "CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:X";
+			var vector_full = vector_cve_2013_1937_base + "/" + vector_temporal_x + "/" + vector_env_x;
+			var base = new CVSS3.BaseMetrics(vector_full);
+			var temporal = new CVSS3.TemporalMetrics(vector_full);
+			var env = new CVSS3.EnvironmentalMetrics(vector_full);
+			env.getVector(base, temporal).should.equal(vector_full);
+			env.getScore(base, temporal).should.equal(6.1);
+		});
+
+		it('Test Environmental Metrics : CVE-2013-1937 (2)', function () {
+			var vector_cve_2013_1937_base = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var vector_temporal_hi = "E:H/RL:U/RC:C";
+			var vector_env_x = "CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:X";
+			var vector_full = vector_cve_2013_1937_base + "/" + vector_temporal_hi + "/" + vector_env_x;
+			var base = new CVSS3.BaseMetrics(vector_full);
+			var temporal = new CVSS3.TemporalMetrics(vector_full);
+			var env = new CVSS3.EnvironmentalMetrics(vector_full);
+			env.getVector(base, temporal).should.equal(vector_full);
+			env.getScore(base, temporal).should.equal(6.1);
+		});
+
+		it('Test Environmental Metrics : CVE-2013-1937 (3)', function () {
+			var vector_cve_2013_1937_base = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
+			var vector_temporal_lo = "E:U/RL:O/RC:U";
+			var vector_env_x = "CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:X";
+			var vector_full = vector_cve_2013_1937_base + "/" + vector_temporal_lo + "/" + vector_env_x;
+			var base = new CVSS3.BaseMetrics(vector_full);
+			var temporal = new CVSS3.TemporalMetrics(vector_full);
+			var env = new CVSS3.EnvironmentalMetrics(vector_full);
+			env.getVector(base, temporal).should.equal(vector_full);
+			env.getScore(base, temporal).should.equal(4.9);
+		});
+
+		it('Test Environmental Metrics : CVE-2014-6271 (1)', function () {
+			var vector_cve_2014_6271_base = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
+			var vector_temporal_x = "E:X/RL:X/RC:X";
+			var vector_env_x = "CR:H/IR:H/AR:H/MAV:X/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:X";
+			var vector_full = vector_cve_2014_6271_base + "/" + vector_temporal_x + "/" + vector_env_x;
+			var base = new CVSS3.BaseMetrics(vector_full);
+			var temporal = new CVSS3.TemporalMetrics(vector_full);
+			var env = new CVSS3.EnvironmentalMetrics(vector_full);
+			env.getVector(base, temporal).should.equal(vector_full);
+			env.getScore(base, temporal).should.equal(9.8);
+		});
+
+		it('Test Environmental Metrics : CVE-2014-6271 (2)', function () {
+			var vector_cve_2014_6271_base = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
+			var vector_temporal_x = "E:X/RL:X/RC:X";
+			var vector_env_x = "CR:H/IR:H/AR:H/MAV:X/MAC:X/MPR:X/MUI:X/MS:C/MC:X/MI:X/MA:X";
+			var vector_full = vector_cve_2014_6271_base + "/" + vector_temporal_x + "/" + vector_env_x;
+			var base = new CVSS3.BaseMetrics(vector_full);
+			var temporal = new CVSS3.TemporalMetrics(vector_full);
+			var env = new CVSS3.EnvironmentalMetrics(vector_full);
+			env.getVector(base, temporal).should.equal(vector_full);
+			env.getScore(base, temporal).should.equal(10.0);
+		});
+
 	});
 
 });

@@ -14,6 +14,7 @@
 	// Declaration
 	CVSS3["BaseMetrics"] = require('./lib/base'); // CVSS3.BaseMetrics(any):object
 	CVSS3["TemporalMetrics"] = require('./lib/temporal'); // CVSS3.TemporalMetrics(any):object
+	CVSS3["EnvironmentalMetrics"] = require('./lib/env'); // CVSS3.EnvironmentalMetrics(any):object
 
 	/**
 	 * Constructor
