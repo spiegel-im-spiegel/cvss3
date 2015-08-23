@@ -11,20 +11,33 @@ Demo code (app.js) :
 var cvss3 = require('cvss3');
 
 var vector_cve_2013_1937 = "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N";
-var base = (new cvss3.BaseMetrics()).importVector(vector_cve_2013_1937);
-console.log('CVE-2013-1937 : Vector : '+base.getVector());
-console.log('                Score  : '+base.getScore());
+var vector_temporal_x = "E:X/RL:X/RC:X";
+var vector_env_x = "CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:X";
+var vector_full = vector_cve_2013_1937 + "/" + vector_temporal_x + "/" + vector_env_x;
+var base = new cvss3.BaseMetrics(vector_full);
+var temporal = new cvss3.TemporalMetrics(vector_full);
+var env = new cvss3.EnvironmentalMetrics(vector_full);
+console.log('CVE-2013-1937 :');
+console.log('            Vector(Base) : '+base.getVector());
+console.log('            Vector(Full) : '+env.getVector(base, temporal));
+console.log('             Base Score  : '+base.getScore());
+console.log('         Temporal Score  : '+temporal.getScore(base));
+console.log('    Environmental Score  : '+env.getScore(base, temporal));
 ```
 
 Operation (on Windows) :
 
 ```shell
 C:>npm install cvss3
-cvss3@0.0.1 node_modules\cvss3
+cvss3@0.1.0 node_modules\cvss3
 
 C:>node app.js
-CVE-2013-1937 : Vector : CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
-                Score  : 6.1
+CVE-2013-1937 :
+            Vector(Base) : CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
+            Vector(Full) : CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N/E:X/RL:X/RC:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:X
+             Base Score  : 6.1
+         Temporal Score  : 6.1
+    Environmental Score  : 6.1
 ```
 
 ## License
