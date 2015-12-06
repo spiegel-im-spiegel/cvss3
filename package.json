@@ -14,7 +14,7 @@
     "test": "mocha --reporter list"
   },
   "engines": {
-    "node": "5.1.x"
+    "node": "0.12.x"
   },
   "repository": {
     "type": "git",
