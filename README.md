@@ -3,6 +3,7 @@
 [![npm version](https://badge.fury.io/js/cvss3.svg)](http://badge.fury.io/js/cvss3)
 [![Build Status](https://travis-ci.org/spiegel-im-spiegel/cvss3.svg)](https://travis-ci.org/spiegel-im-spiegel/cvss3)
 [![Dependency Status](https://david-dm.org/spiegel-im-spiegel/cvss3.svg)](https://david-dm.org/spiegel-im-spiegel/cvss3)
+[![devDependency Status](https://david-dm.org/spiegel-im-spiegel/cvss3/dev-status.svg)](https://david-dm.org/spiegel-im-spiegel/cvss3#info=devDependencies)
 
 ## Usage
 
