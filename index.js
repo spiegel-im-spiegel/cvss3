@@ -24,8 +24,9 @@
 	function CVSS3() { }
 
 	// Exports
-	if ("process" in global) {
+	if (typeof module === "object" && "exports" in module) {
 		module["exports"] = CVSS3;
+		return;
 	}
 	global["CVSS3"] = CVSS3;
 
